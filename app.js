@@ -79,12 +79,12 @@ do {
         process.exit(1)
     } else {
         count++;
-        console.log(chalk.red(`C'est faux, la lettre ${question} n'est pas dans le mot, il vous reste ${coup} coups
+        console.log(chalk.red(`C'est faux, il vous reste ${coup} coups
         ${hangman[count]}`))
         coup--;
     }
 
-    if(count === hangman.length) {
+    if(coup === -1) {
         console.log("Vous avez perdu")
         process.exit(1)
     }
