@@ -73,7 +73,6 @@ do {
     question = readlineSync.question(`Quel mot ou lettre voulez vous choisir ? - `);
     if(lettre.includes(question)) {
         console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot! Il vous reste ${coup} coups`))
-        count++;
         coup--;
     } else if (question === mot) {
         console.log(chalk.green(`Bravo, vous avez gagné!`));
