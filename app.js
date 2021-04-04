@@ -74,18 +74,19 @@ do {
 Entrez votre lettre: `));
 
   if(isNaN(question)) {
-    if (lettre.includes(question)) {
-      console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot!`))
-  
-      for (let i = 0; i < mapTabLettre.length; i++) {
-        if (lettre[i] === question) {
-          //Je récupère l'index du mot
-          let index = [i];
-          // grâce à la méthode splice, il ajoute la lettre a l'index récupéré.
-          mapTabLettre.splice(index, 1, question)
-          pendu = mapTabLettre.join(' ');
+    if(pendu.includes(question)) {
+      console.log(chalk.yellow(`Vous avez déjà entrer cette lettre`))
+    } else if (lettre.includes(question)) {
+        console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot!`));
+        for (let i = 0; i < mapTabLettre.length; i++) {
+          if (lettre[i] === question) {
+            //Je récupère l'index du mot
+            let index = [i];
+            // grâce à la méthode splice, il ajoute la lettre a l'index récupéré.
+            mapTabLettre.splice(index, 1, question)
+            pendu = mapTabLettre.join(' ');
+          }
         }
-      }
     } else if (question === mot) {
       console.log(chalk.green(`Bravo, vous avez gagné, le mot est: ${question}`));
       process.exit(1)
