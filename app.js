@@ -68,7 +68,7 @@ const hangman = [`
 
 do {
   question = readlineSync.question(chalk.blue(`Quel mot ou lettre voulez vous choisir ? ${pendu} 
-Entrez votre lettre: `));
+Entrez votre lettre: `)).toLowerCase();
 
   if(isNaN(question)) {
     if(pendu.includes(question)) {
