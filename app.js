@@ -2,15 +2,11 @@ const readlineSync   = require('readline-sync');
 const {readFileSync} = require('fs');
 const chalk          = require('chalk');
 const {randomInt}    = require('crypto');
-// Lecture du fichier ou sont les mots
 const dictionnaire   = readFileSync('dic.txt', 'utf-8');
-// Récupération des mots dans un tableau
 const tableauDeMot   = dictionnaire.split("\n");
-// Choix d'un mot au hasard grâce à randomInt
 const indexHasard    = randomInt(0, tableauDeMot.length);
 let mot              = tableauDeMot[indexHasard].toLowerCase();
 let lettre           = mot.split("");
-// Map me retourne un tableau avec la longueur du mot, mais en le remplacant par des _
 let mapTabLettre     = lettre.map(el => '_');
 let pendu            = ""
 let question         = "";
@@ -82,9 +78,7 @@ Entrez votre lettre: `));
         score++;
         for (let i = 0; i < mapTabLettre.length; i++) {
           if (lettre[i] === question) {
-            //Je récupère l'index du mot
             let index = [i];
-            // grâce à la méthode splice, il ajoute la lettre a l'index récupéré.
             mapTabLettre.splice(index, 1, question)
             pendu = mapTabLettre.join(' ');
           }
