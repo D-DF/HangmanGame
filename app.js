@@ -16,6 +16,7 @@ let pendu            = ""
 let question         = "";
 let count            = -1;
 let coup             = 7;
+let score            = 0;
 console.log(mot)
 
 const hangman = [`
@@ -78,6 +79,7 @@ Entrez votre lettre: `));
       console.log(chalk.yellow(`Vous avez déjà entrer cette lettre`))
     } else if (lettre.includes(question)) {
         console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot!`));
+        score++;
         for (let i = 0; i < mapTabLettre.length; i++) {
           if (lettre[i] === question) {
             //Je récupère l'index du mot
@@ -88,10 +90,12 @@ Entrez votre lettre: `));
           }
         }
     } else if (question === mot) {
-      console.log(chalk.green(`Bravo, vous avez gagné, le mot est: ${question}`));
+      console.log(chalk.green(`Bravo, vous avez gagné, vous avez réussi en ${score} coups!`));
+      score++;
       process.exit(1)
     } else {
       count++;
+      score++;
       console.log(chalk.red(`C'est faux, il vous reste ${coup} coups
           ${hangman[count]}`))
       coup--;
