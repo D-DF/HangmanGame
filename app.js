@@ -68,29 +68,30 @@ const hangman = [`
 
 do {
   question = readlineSync.question(chalk.blue(`Quel mot ou lettre voulez vous choisir ? ${pendu} 
-Entrez votre lettre: `)).toLowerCase();
+Entrez votre lettre ou mot: `)).toLowerCase();
 
-  if(isNaN(question)) {
-    if(pendu.includes(question)) {
+  if (isNaN(question)) {
+    if (pendu.includes(question)) {
       console.log(chalk.yellow(`Vous avez déjà entrer cette lettre`))
     } else if (lettre.includes(question)) {
-        console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot!`));
-        score++;
-        for (let i = 0; i < mapTabLettre.length; i++) {
-          if (lettre[i] === question) {
-            let index = [i];
-            mapTabLettre.splice(index, 1, question)
-            pendu = mapTabLettre.join(' ');
-          }
+      console.log(chalk.green(`Bravo, la lettre ${question}, fait partie du mot!`));
+      score++;
+      for (let i = 0; i < mapTabLettre.length; i++) {
+        if (lettre[i] === question) {
+          let index = [i];
+          mapTabLettre.splice(index, 1, question)
+          pendu = mapTabLettre.join(' ');
         }
+      }
     } else if (question === mot) {
-      console.log(chalk.green(`Bravo, vous avez gagné, vous avez réussi en ${score} coups!`));
+      console.log(chalk.green(`Bravo vous avez gagné! Vous avez réussi en ${score} coups!
+🏆`));
       score++;
       process.exit(1)
     } else {
       count++;
       score++;
-      console.log(chalk.red(`C'est faux, il vous reste ${coup} coups
+      console.log(chalk.red(`C'est faux, il vous reste ${coup} coups 😰
           ${hangman[count]}`))
       coup--;
     }
@@ -102,4 +103,3 @@ Entrez votre lettre: `)).toLowerCase();
     console.log(chalk.red(`Vous n'avez pas entrer une lettre`))
   }
 } while (question !== mot)
-
